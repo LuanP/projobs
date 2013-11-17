@@ -31,6 +31,9 @@ class Inscricao(models.Model):
     nota_dinamica = models.PositiveSmallIntegerField(blank=True, null=True)
     nota_curriculo = models.PositiveSmallIntegerField(blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = u'Inscrições'
+
 
 class Entrevista(models.Model):
     inscricao = models.ForeignKey('Inscricao')
