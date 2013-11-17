@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     # Own apps
     'empresas',
     'profissionais',
+    'vagas',
 )
 
 MIDDLEWARE_CLASSES = (
