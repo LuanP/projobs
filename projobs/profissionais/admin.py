@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Profissional, FormacaoProfissional, FormacaoAcademica
+
+
+class ProfissionalAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Profissional, ProfissionalAdmin)
