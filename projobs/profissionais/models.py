@@ -5,10 +5,10 @@ from django.db import models
 
 class Profissional(models.Model):
     CHOICES = (
-        ('solteiro', 'Solteiro'),
-        ('casado', 'Casado'),
-        ('viuvo', 'Viúvo'),
-        ('divorciado', 'Divorciado'),
+        ('solteiro', u'Solteiro'),
+        ('casado', u'Casado'),
+        ('viuvo', u'Viúvo'),
+        ('divorciado', u'Divorciado'),
     )
 
     nome = models.CharField(max_length=200)
@@ -16,6 +16,9 @@ class Profissional(models.Model):
     area = models.CharField(max_length=200, blank=True, null=True)
     telefone = models.CharField(max_length=200, blank=True, null=True)
     estado_civil = models.CharField(max_length=200, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = u'Profissionais'
 
 
 class FormacaoProfissional(models.Model):
