@@ -30,6 +30,9 @@ class FormacaoProfissional(models.Model):
     termino = models.DateField(blank=True, null=True)
     atual = models.BooleanField()
 
+    class Meta:
+        verbose_name_plural = u'Formações Profissionais'
+
     # to do on forms
     # def clean_termino(self, *args, **kwargs):
     #     if self.cleaned_data['termino'] < self.cleaned_data['inicio']:
@@ -44,3 +47,6 @@ class FormacaoAcademica(models.Model):
     curso = models.CharField(max_length=200)
     cargo = models.CharField(max_length=200)
     data_conclusao = models.DateField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = u'Formações Acadêmicas'
