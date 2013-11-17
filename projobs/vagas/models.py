@@ -22,6 +22,9 @@ class ProcessoSeletivo(models.Model):
 
 
 class Inscricao(models.Model):
+    vaga = models.ForeignKey('ProcessoSeletivo')
+    profissional = models.ForeignKey('profissionais.Profissional')
+
     data = models.DateField(auto_now_add=True)
     pretensao_salarial = models.CharField(max_length=200)
     nota_escrita = models.PositiveSmallIntegerField(blank=True, null=True)
