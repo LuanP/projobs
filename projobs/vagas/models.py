@@ -10,6 +10,7 @@ class Vaga(models.Model):
     descricao = models.TextField()
     setor = models.CharField(max_length=200)
     inicio = models.DateField(blank=True, null=True)
+    quantidade = models.PositiveSmallIntegerField(default=1)
     # requisitos = models.ForeignKey('Requisito', blank=True, null=True)
 
 
