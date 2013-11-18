@@ -7,9 +7,14 @@ class VagaAdmin(admin.ModelAdmin):
     pass
 
 
+class ProcessoSeletivoAdmin(admin.ModelAdmin):
+    pass
+
+
 class InscricaoAdmin(admin.ModelAdmin):
     pass
 
 
 admin.site.register(Vaga, VagaAdmin)
 admin.site.register(Inscricao, InscricaoAdmin)
+admin.site.register(ProcessoSeletivo, ProcessoSeletivoAdmin)
