@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Projobs</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- JQuery -->
+<script src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{{ STATIC_URL }}assets/bootstrap3/css/bootstrap.min.css" />
+<script src="{{ STATIC_URL }}assets/bootstrap3/js/bootstrap.min.js"></script>
+
+{% block extrahead %}
+{% endblock %}
+
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+    <ul class="nav nav-pills pull-right">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Profissional</a></li>
+      <li><a href="#">Empresa</a></li>
+    </ul>
+    <h3 class="text-muted">Projobs</h3>
+  </div>
+
+  {% block jumbotron %}
+  {% endblock %}
+
+  {% block content %}
+  {% endblock %}
+
+</div>
+</body>
+
+</html>
