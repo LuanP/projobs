@@ -11,6 +11,10 @@ urlpatterns = patterns('',
         r'^profissionais/',
         include('profissionais.urls', namespace='profissionais')
     ),
+    url(
+        r'^empresas/',
+        include('empresas.urls', namespace='empresas')
+    ),
 
     url(r'^admin/', include(admin.site.urls)),
 )
