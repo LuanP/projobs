@@ -40,6 +40,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third-party apps
+    'bootstrap3',
+
     # Own apps
     'empresas',
     'profissionais',

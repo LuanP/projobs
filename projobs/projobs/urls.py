@@ -7,8 +7,10 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='home'),
-    # Include example
-    # url(r'^blog/', include('blog.urls')),
+    url(
+        r'^profissionais/',
+        include('profissionais.urls', namespace='profissionais')
+    ),
 
     url(r'^admin/', include(admin.site.urls)),
 )
