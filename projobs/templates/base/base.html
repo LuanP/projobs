@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}assets/bootstrap3/css/bootstrap.min.css" />
 <script src="{{ STATIC_URL }}assets/bootstrap3/js/bootstrap.min.js"></script>
 
+<!-- Projobs -->
+<link rel="stylesheet" href="{{ STATIC_URL }}css/screen.css" />
+
 {% block extrahead %}
 {% endblock %}
 
@@ -26,7 +29,11 @@
       <li><a href="#">Profissional</a></li>
       <li><a href="#">Empresa</a></li>
     </ul>
-    <h3 class="text-muted">Projobs</h3>
+    <h3 class="text-muted">
+      <a href="{% url 'home' %}">Projobs
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+      </a>
+    </h3>
   </div>
   <hr />
 
