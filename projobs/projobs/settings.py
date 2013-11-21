@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'bootstrap3',
 
     # Own apps
+    'core',
     'empresas',
     'profissionais',
     'vagas',

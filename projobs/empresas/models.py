@@ -2,9 +2,8 @@
 
 from django.db import models
 
+from core.models import BaseCadastro
 
-class Empresa(models.Model):
+
+class Empresa(BaseCadastro):
     nome = models.CharField(max_length=200)
-    email = models.EmailField()
-    cidade = models.CharField(max_length=200, blank=True, null=True)
-    estado = models.CharField(max_length=200, blank=True, null=True)

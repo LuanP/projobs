@@ -2,20 +2,15 @@
 
 from django.db import models
 
+from core.models import BaseCadastro
 
-class Profissional(models.Model):
-    CHOICES = (
-        ('solteiro', u'Solteiro'),
-        ('casado', u'Casado'),
-        ('viuvo', u'Viúvo'),
-        ('divorciado', u'Divorciado'),
-    )
 
+class Profissional(BaseCadastro):
     nome = models.CharField(max_length=200)
-    email = models.EmailField()
-    area = models.CharField(max_length=200, blank=True, null=True)
+    rg = models.CharField(max_length=200, blank=True, null=True)
+    cpf = models.CharField(max_length=200, blank=True, null=True)
+    data_nascimento = models.DateField()
     telefone = models.CharField(max_length=200, blank=True, null=True)
-    estado_civil = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = u'Profissionais'
