@@ -2,8 +2,8 @@
 
 from django.db import models
 
-from core.models import BaseCadastro
+from accounts.models import User
 
 
-class Empresa(BaseCadastro):
-    nome = models.CharField(max_length=200)
+class Empresa(User):
+    pass

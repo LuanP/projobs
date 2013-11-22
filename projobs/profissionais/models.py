@@ -2,11 +2,10 @@
 
 from django.db import models
 
-from core.models import BaseCadastro
+from accounts.models import User
 
 
-class Profissional(BaseCadastro):
-    nome = models.CharField(max_length=200)
+class Profissional(User):
     rg = models.CharField(max_length=200, blank=True, null=True)
     cpf = models.CharField(max_length=200, blank=True, null=True)
     data_nascimento = models.DateField()

@@ -16,5 +16,14 @@ urlpatterns = patterns('',
         include('empresas.urls', namespace='empresas')
     ),
 
+    url(r'^login/$', 'django.contrib.auth.views.login', {
+            'template_name': 'login.html'
+        }, name='login'
+    ),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {
+            'template_name': 'logout.html', 'next_page': '/'
+        }, name='logout'
+    ),
+
     url(r'^admin/', include(admin.site.urls)),
 )
