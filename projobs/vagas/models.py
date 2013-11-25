@@ -11,7 +11,7 @@ class Vaga(models.Model):
     setor = models.CharField(max_length=200)
     inicio = models.DateField(blank=True, null=True)
     quantidade = models.PositiveSmallIntegerField(default=1)
-    requisitos = models.ManyToManyField('Requisito')
+    requisitos = models.ManyToManyField('Requisito', blank=True, null=True)
 
 
 class ProcessoSeletivo(models.Model):
