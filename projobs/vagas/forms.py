@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+
+from django import forms
+
+from .models import Vaga
+
+
+class VagaForm(forms.ModelForm):
+    class Meta:
+        model = Vaga
+        exclude = ('empresa', )

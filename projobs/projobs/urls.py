@@ -15,6 +15,10 @@ urlpatterns = patterns('',
         r'^empresas/',
         include('empresas.urls', namespace='empresas')
     ),
+    url(
+        r'^vagas/',
+        include('vagas.urls', namespace='vagas')
+    ),
 
     url(r'^login/$', 'django.contrib.auth.views.login', {
             'template_name': 'login.html'

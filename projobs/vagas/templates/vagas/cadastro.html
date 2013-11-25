@@ -1,0 +1,20 @@
+{% extends "base/base.html" %}
+
+{% load bootstrap3 %}
+
+
+{% block title %}
+  <h3>{% bootstrap_icon "check" %} Cadastro de Vaga</h3>
+  <hr />
+{% endblock %}
+
+
+{% block content %}
+  <form class="form" method="POST" role="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <div class="form-actions">
+      <button class="btn btn-primary">Criar Vaga</button>
+    </div>
+  </form>
+{% endblock %}

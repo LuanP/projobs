@@ -8,22 +8,26 @@ from .forms import ProfissionalForm
 from .models import Profissional
 
 
-class ProfissionalHomeView(DetailView):
-    model = Profissional
-    template_name = 'profissionais/home.html'
-
-    def dispatch(self, *args, **kwargs):
+class ProfissionalBaseMixin(object):
+    def dispatch(self, request, *args, **kwargs):
         try:
-            obj = self.get_object()
+            self.get_object()
         except Profissional.DoesNotExist:
             return redirect('{}?next={}'.format(
                 settings.LOGIN_URL,
-                self.request.path
+                request.path
             ))
-        return super(ProfissionalHomeView, self).dispatch(*args, **kwargs)
+        return super(ProfissionalBaseMixin, self).dispatch(
+            request, *args, **kwargs
+        )
 
     def get_object(self, queryset=None):
         return Profissional.objects.get(pk=self.request.user.pk)
+
+
+class ProfissionalHomeView(ProfissionalBaseMixin, DetailView):
+    model = Profissional
+    template_name = 'profissionais/home.html'
 
 
 class CadastroView(CreateView):
