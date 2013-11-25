@@ -2,13 +2,14 @@
 
 from django import forms
 
+from accounts.forms import AccountForm
 from .models import Empresa
 
 
-class EmpresaForm(forms.ModelForm):
+class EmpresaForm(AccountForm):
     class Meta:
         model = Empresa
         fields = (
-            'username', 'email', 'password', 'company_name', 'area', 'estado',
-            'cidade', 'logradouro'
+            'username', 'password1', 'password2', 'email', 'company_name',
+            'area', 'estado', 'cidade', 'logradouro'
         )
