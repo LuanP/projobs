@@ -27,7 +27,7 @@
     <div class="header">
       <ul class="nav nav-pills pull-right">
         <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="#">Profissional</a></li>
+        <li><a href="{% url 'profissionais:home' %}">Profissional</a></li>
         <li><a href="{% url 'empresas:home' %}">Empresa</a></li>
         {% if user.is_authenticated %}
           <li class="active"><a href="{% url 'logout' %}">Sair</a></li>
