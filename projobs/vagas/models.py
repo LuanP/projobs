@@ -13,6 +13,9 @@ class Vaga(models.Model):
     quantidade = models.PositiveSmallIntegerField(default=1)
     requisitos = models.ManyToManyField('Requisito', blank=True, null=True)
 
+    def __unicode__(self):
+        return u'{} em {}'.format(self.cargo, self.empresa)
+
 
 class ProcessoSeletivo(models.Model):
     vaga = models.ForeignKey('Vaga')
@@ -46,3 +49,6 @@ class Entrevista(models.Model):
 
 class Requisito(models.Model):
     requisito = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.requisito

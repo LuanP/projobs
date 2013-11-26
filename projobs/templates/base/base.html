@@ -23,36 +23,32 @@
 
 <body>
 <div class="container">
-  <div class="row">
-    <div class="header">
-      <ul class="nav nav-pills pull-right">
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'profissionais:home' %}">Profissional</a></li>
-        <li><a href="{% url 'empresas:home' %}">Empresa</a></li>
-        {% if user.is_authenticated %}
-          <li class="active"><a href="{% url 'logout' %}">Sair</a></li>
-        {% else %}
-          <li class="active"><a href="{% url 'login' %}">Entrar</a></li>
-        {% endif %}
-      </ul>
-      <h3 class="text-muted">
-        <a href="{% url 'home' %}">Projobs
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-        </a>
-      </h3>
-    </div>
-    <hr />
+  <div class="header">
+    <ul class="nav nav-pills pull-right">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'profissionais:home' %}">Profissional</a></li>
+      <li><a href="{% url 'empresas:home' %}">Empresa</a></li>
+      {% if user.is_authenticated %}
+        <li class="active"><a href="{% url 'logout' %}">Sair</a></li>
+      {% else %}
+        <li class="active"><a href="{% url 'login' %}">Entrar</a></li>
+      {% endif %}
+    </ul>
+    <h3 class="text-muted">
+      <a href="{% url 'home' %}">Projobs
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+      </a>
+    </h3>
   </div>
+  <hr />
 
   {% block jumbotron %}
   {% endblock %}
 
   <div class="row">
-    {% block title %}{% endblock %}
-  </div>
-
-  <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      {% block title %}{% endblock %}
+
       {% block content %}
       {% endblock %}
     </div>
