@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 from empresas.views import EmpresaBaseMixin
 from .forms import VagaForm
@@ -13,10 +14,13 @@ class CadastroView(EmpresaBaseMixin, CreateView):
     form_class = VagaForm
     success_url = reverse_lazy('empresas:home')
 
-    def get_form_kwargs(self):
-        kwargs = super(CadastroView, self).get_form_kwargs()
-        if kwargs.get('data'):
-            data = kwargs['data'].copy()
-            data['empresa'] = self.user.pk
-            kwargs['data'] = data
-        return kwargs
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.empresa_id = self.get_object().pk
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class VagaListView(ListView):
+    model = Vaga
+    context_object_name = 'vagas'
