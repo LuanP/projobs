@@ -14,7 +14,7 @@ class Vaga(models.Model):
     requisitos = models.ManyToManyField('Requisito', blank=True, null=True)
 
     def __unicode__(self):
-        return u'{} em {}'.format(self.cargo, self.empresa)
+        return u'{} em {}'.format(self.cargo, self.empresa.company_name)
 
 
 class ProcessoSeletivo(models.Model):

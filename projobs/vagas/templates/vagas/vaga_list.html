@@ -11,40 +11,44 @@
       <th>Cargo</th>
       <th>Setor</th>
       <th>Requisitos</th>
+      <th>Inscrição</th>
     </tr>
-  {% for vaga in vagas %}
-    <tr>
-      <td>{{ vaga.cargo }}</td>
-      <td>{{ vaga.setor }}</td>
-      <td>
-        {% if vaga.requisito_set.exists %}
-          <button class="btn btn-default" title="Clique para visualizar os requisitos necessários para essa vaga" data-targer="#RequisitosModal{{ forloop.counter0 }}">{% bootstrap_icon "question-sign" %}
-          </button>
-          <!-- Modal -->
-          <div class="modal fade" id="RequisitosModal{{ forloop.counter0 }}" tabindex="-1" role="dialog" aria-labelledby="RequisitosLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="RequisitosLabel">Requistos da vaga: {{ vaga.cargo }}</h4>
-                </div>
-                <div class="modal-body">
-                  {% for requisito in vaga.requisito_set.all %}
-                    {{ requisito }}
-                  {% endfor %}
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
-        {% else %}
-          <button class="btn btn-default disabled" title="Não há requisitos para essa vaga">{% bootstrap_icon "question-sign" %}</button>
-        {% endif %}
-      </td>
-    </tr>
-  {% endfor %}
+    {% for vaga in vagas %}
+      <tr>
+        <td>{{ vaga.cargo }}</td>
+        <td>{{ vaga.setor }}</td>
+        <td>
+          {% if vaga.requisitos.exists %}
+            <button class="btn btn-default" title="Clique para visualizar os requisitos necessários para essa vaga" data-toggle="modal" data-target="#RequisitosModal{{ forloop.counter0 }}">{% bootstrap_icon "question-sign" %}
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="RequisitosModal{{ forloop.counter0 }}" tabindex="-1" role="dialog" aria-labelledby="RequisitosLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="RequisitosLabel">Requistos da vaga: {{ vaga.cargo|capfirst }}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <ul class="list-unstyled">
+                    {% for requisito in vaga.requisitos.all %}
+                      <li>{{ requisito }}</li>
+                    {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Quero me inscrever</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+          {% else %}
+            <button class="btn btn-default disabled" title="Não há requisitos para essa vaga">{% bootstrap_icon "question-sign" %}</button>
+          {% endif %}
+        </td>
+        <td><a href="#" class="btn btn-primary">Inscrição</a></td>
+      </tr>
+    {% endfor %}
   </table>
 {% endblock %}

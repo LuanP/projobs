@@ -26,6 +26,7 @@ class EmpresaBaseMixin(object):
 class EmpresaHomeView(EmpresaBaseMixin, DetailView):
     model = Empresa
     template_name = 'empresas/home.html'
+    context_object_name = 'empresa'
 
 
 class CadastroView(CreateView):
