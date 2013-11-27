@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^grappelli/', include('grappelli.urls')),
     url(
         r'^profissionais/',
         include('profissionais.urls', namespace='profissionais')
