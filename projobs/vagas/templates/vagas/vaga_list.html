@@ -38,7 +38,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Quero me inscrever</button>
+                    <button type="button" class="btn btn-primary{% if not vaga.processoseletivo_set.exists %} disabled{% endif %}">Quero me inscrever</button>
                   </div>
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
@@ -47,7 +47,9 @@
             <button class="btn btn-default disabled" title="Não há requisitos para essa vaga">{% bootstrap_icon "question-sign" %}</button>
           {% endif %}
         </td>
-        <td><a href="#" class="btn btn-primary">Inscrição</a></td>
+        <td>
+          <a href="#" class="btn btn-primary{% if not vaga.processoseletivo_set.exists %} disabled{% endif %}">Inscrição</a>
+        </td>
       </tr>
     {% endfor %}
   </table>
