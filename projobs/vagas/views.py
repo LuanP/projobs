@@ -18,6 +18,7 @@ class CadastroView(EmpresaBaseMixin, CreateView):
         self.object = form.save(commit=False)
         self.object.empresa_id = self.get_object().pk
         self.object.save()
+        form.save_m2m()
         return HttpResponseRedirect(self.get_success_url())
 
 
