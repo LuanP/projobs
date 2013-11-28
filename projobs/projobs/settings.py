@@ -47,6 +47,7 @@ INSTALLED_APPS = (
 
     # Third-party apps
     'bootstrap3',
+    'south',
 
     # Own apps
     'accounts',

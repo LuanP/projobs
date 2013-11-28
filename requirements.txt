@@ -1,3 +1,4 @@
 Django==1.6
 django-bootstrap3==2.0.0
 django-grappelli==2.5.0
+South==0.8.4
