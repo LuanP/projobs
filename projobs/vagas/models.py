@@ -25,6 +25,9 @@ class ProcessoSeletivo(models.Model):
     )
     ativo = models.BooleanField(default=True)
 
+    def __unicode__(self):
+        return u'{} - {}'.format(self.vaga.empresa, self.vaga.cargo)
+
 
 class Inscricao(models.Model):
     processo_seletivo = models.ForeignKey('ProcessoSeletivo')
@@ -40,11 +43,17 @@ class Inscricao(models.Model):
     class Meta:
         verbose_name_plural = u'Inscrições'
 
+    def __unicode__(self):
+        return u'{} em {}'.format(self.profissional, self.processo_seletivo)
+
 
 class Entrevista(models.Model):
     inscricao = models.ForeignKey('Inscricao')
 
     relatorio = models.TextField()
+
+    def __unicode__(self):
+        return u'relatório de {}'.format(self.inscricao)
 
 
 class Requisito(models.Model):

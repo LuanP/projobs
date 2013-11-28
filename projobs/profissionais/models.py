@@ -14,6 +14,9 @@ class Profissional(User):
     class Meta:
         verbose_name_plural = u'Profissionais'
 
+    def __unicode__(self):
+        return self.get_full_name()
+
 
 class FormacaoProfissional(models.Model):
     profissional = models.ForeignKey('Profissional')
@@ -27,6 +30,10 @@ class FormacaoProfissional(models.Model):
     class Meta:
         verbose_name_plural = u'Formações Profissionais'
 
+    def __unicode__(self):
+        return u'{} ({} em {})'.format(self.profissional, self.cargo,
+                                       self.empresa)
+
     # to do on forms
     # def clean_termino(self, *args, **kwargs):
     #     if self.cleaned_data['termino'] < self.cleaned_data['inicio']:
@@ -39,8 +46,12 @@ class FormacaoAcademica(models.Model):
     profissional = models.ForeignKey('Profissional')
 
     curso = models.CharField(max_length=200)
-    cargo = models.CharField(max_length=200)
+    instituicao = models.CharField(max_length=200)
     data_conclusao = models.DateField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = u'Formações Acadêmicas'
+
+    def __unicode__(self):
+        return u'{} ({} em {})'.format(self.profissional, self.curso,
+                                       self.instituicao)
