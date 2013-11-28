@@ -4,8 +4,9 @@ from django.shortcuts import render
 from django.views.generic import CreateView, ListView, UpdateView
 
 from empresas.views import EmpresaBaseMixin
-from .forms import VagaForm
-from .models import Vaga
+from profissionais.views import ProfissionalBaseMixin
+from .forms import VagaForm, InscricaoForm
+from .models import Vaga, Inscricao
 
 
 class CadastroView(EmpresaBaseMixin, CreateView):
@@ -43,3 +44,17 @@ class AtualizarView(EmpresaBaseMixin, UpdateView):
         obj = super(AtualizarView, self).get_object(queryset)
         self.empresa_id = obj.pk
         return obj.vaga_set.get(pk=self.kwargs.get('pk'))
+
+
+class InscricaoView(ProfissionalBaseMixin, CreateView):
+    model = Inscricao
+    form_class = InscricaoForm
+    success_url = reverse_lazy('profissionais:home')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.processo_seletivo_id = self.kwargs.get('pk')
+        self.object.profissional_id = self.request.user.pk
+        self.object.save()
+        form.save_m2m()
+        return HttpResponseRedirect(self.get_success_url())

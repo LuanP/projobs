@@ -3,7 +3,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
 
-from .views import CadastroView, VagaListView, AtualizarView
+from .views import CadastroView, VagaListView, AtualizarView, InscricaoView
 
 
 urlpatterns = patterns('',
@@ -17,5 +17,10 @@ urlpatterns = patterns('',
         r'^atualizar/(?P<pk>\d+)$',
         login_required(AtualizarView.as_view()),
         name='atualizar'
-    )
+    ),
+    url(
+        r'^inscricao/(?P<pk>\d+)/$',
+        login_required(InscricaoView.as_view()),
+        name='inscricao'
+    ),
 )
