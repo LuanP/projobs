@@ -7,8 +7,13 @@ class VagaAdmin(admin.ModelAdmin):
     pass
 
 
+class InscricaoInline(admin.TabularInline):
+    model = Inscricao
+    extra = 1
+
+
 class ProcessoSeletivoAdmin(admin.ModelAdmin):
-    pass
+    inlines = [InscricaoInline, ]
 
 
 class InscricaoAdmin(admin.ModelAdmin):
