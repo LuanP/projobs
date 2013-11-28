@@ -2,7 +2,63 @@
 
 {% load bootstrap3 %}
 
-{% block title %}<h3>Profissional</h3><hr />{% endblock %}
+{% block title %}
+  <h3>
+    {% if profissional.get_full_name %}
+      {{ profissional.get_full_name }}
+    {% else %}
+      Profissional
+    {% endif %}
+  </h3>
+  <hr />
+{% endblock %}
 
 {% block content %}
+
+  <table class="table table-bordered">
+    <tr class="alert-success"><th colspan="5">Processos ativos</th></tr>
+    <tr>
+      <th>Cargo</th>
+      <th>Setor</th>
+      <th>Nota Escrita/Oral</th>
+      <th>Nota Dinâmica</th>
+      <th>Nota Currículo</th>
+    </tr>
+    {% for inscricao in profissional.inscricao_set.all %}
+      {% if inscricao.processo_seletivo.ativo %}
+        <tr>
+          <td>{{ inscricao.processo_seletivo.vaga.cargo }}</td>
+          <td>{{ inscricao.processo_seletivo.vaga.setor }}</td>
+          <td>{% if inscricao.nota_escrita %}{{ inscricao.nota_escrita }}{% endif %}</td>
+          <td>{% if inscricao.nota_dinamica %}{{ inscricao.nota_dinamica }}{% endif %}</td>
+          <td>{% if inscricao.nota_curriculo %}{{ inscricao.nota_curriculo }}{% endif %}</td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+
+  <hr />
+
+  <table class="table table-bordered">
+    <tr class="alert-warning"><th colspan="5">Processos inativos</th></tr>
+    <tr>
+      <th>Cargo</th>
+      <th>Setor</th>
+      <th>Nota Escrita/Oral</th>
+      <th>Nota Dinâmica</th>
+      <th>Nota Currículo</th>
+    </tr>
+    {% for inscricao in profissional.inscricao_set.all %}
+      {% if not inscricao.processo_seletivo.ativo %}
+        <tr>
+          <td>{{ inscricao.processo_seletivo.vaga.cargo }}</td>
+          <td>{{ inscricao.processo_seletivo.vaga.setor }}</td>
+          <td>{% if inscricao.nota_escrita %}{{ inscricao.nota_escrita }}{% endif %}</td>
+          <td>{% if inscricao.nota_dinamica %}{{ inscricao.nota_dinamica }}{% endif %}</td>
+          <td>{% if inscricao.nota_curriculo %}{{ inscricao.nota_curriculo }}{% endif %}</td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+
 {% endblock %}

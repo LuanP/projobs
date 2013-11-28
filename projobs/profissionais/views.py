@@ -28,6 +28,7 @@ class ProfissionalBaseMixin(object):
 class ProfissionalHomeView(ProfissionalBaseMixin, DetailView):
     model = Profissional
     template_name = 'profissionais/home.html'
+    context_object_name = 'profissional'
 
 
 class CadastroView(CreateView):
