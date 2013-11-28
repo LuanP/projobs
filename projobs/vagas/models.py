@@ -44,7 +44,7 @@ class Inscricao(models.Model):
     nota_dinamica = models.PositiveSmallIntegerField(blank=True, null=True)
     nota_curriculo = models.PositiveSmallIntegerField(blank=True, null=True)
     requisitos = models.ManyToManyField('Requisito', blank=True, null=True)
-    situacao = models.IntegerField(choices=SITUACAO_CHOICES)
+    situacao = models.IntegerField(choices=SITUACAO_CHOICES, default=0)
 
     class Meta:
         verbose_name_plural = u'Inscrições'
