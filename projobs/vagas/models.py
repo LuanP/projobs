@@ -30,6 +30,11 @@ class ProcessoSeletivo(models.Model):
 
 
 class Inscricao(models.Model):
+    SITUACAO_CHOICES = (
+        (0, 'Em processo'),
+        (1, 'Aprovado'),
+        (2, 'Reprovado'),
+    )
     processo_seletivo = models.ForeignKey('ProcessoSeletivo')
     profissional = models.ForeignKey('profissionais.Profissional')
 
@@ -39,9 +44,11 @@ class Inscricao(models.Model):
     nota_dinamica = models.PositiveSmallIntegerField(blank=True, null=True)
     nota_curriculo = models.PositiveSmallIntegerField(blank=True, null=True)
     requisitos = models.ManyToManyField('Requisito', blank=True, null=True)
+    situacao = models.IntegerField(choices=SITUACAO_CHOICES)
 
     class Meta:
         verbose_name_plural = u'Inscrições'
+        unique_together = ('profissional', 'processo_seletivo')
 
     def __unicode__(self):
         return u'{} em {}'.format(self.profissional, self.processo_seletivo)

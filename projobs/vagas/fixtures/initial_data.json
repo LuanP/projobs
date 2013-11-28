@@ -1,0 +1,30 @@
+[
+{
+    "pk": 1, 
+    "model": "vagas.requisito", 
+    "fields": {
+        "requisito": "Ensino Fundamental"
+    }
+},
+{
+    "pk": 2, 
+    "model": "vagas.requisito", 
+    "fields": {
+        "requisito": "Ensino M\u00e9dio"
+    }
+},
+{
+    "pk": 3, 
+    "model": "vagas.requisito", 
+    "fields": {
+        "requisito": "Ensino Superior"
+    }
+},
+{
+    "pk": 5, 
+    "model": "vagas.requisito", 
+    "fields": {
+        "requisito": "Ensino T\u00e9cnico"
+    }
+}
+]

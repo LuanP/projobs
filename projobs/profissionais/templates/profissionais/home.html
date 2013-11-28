@@ -16,13 +16,14 @@
 {% block content %}
 
   <table class="table table-bordered">
-    <tr class="alert-success"><th colspan="5">Processos ativos</th></tr>
+    <tr class="alert-success"><th colspan="6">Processos ativos</th></tr>
     <tr>
       <th>Cargo</th>
       <th>Setor</th>
       <th>Nota Escrita/Oral</th>
       <th>Nota Dinâmica</th>
       <th>Nota Currículo</th>
+      <td class="text-center">Situação</td>
     </tr>
     {% for inscricao in profissional.inscricao_set.all %}
       {% if inscricao.processo_seletivo.ativo %}
@@ -32,6 +33,17 @@
           <td>{% if inscricao.nota_escrita %}{{ inscricao.nota_escrita }}{% endif %}</td>
           <td>{% if inscricao.nota_dinamica %}{{ inscricao.nota_dinamica }}{% endif %}</td>
           <td>{% if inscricao.nota_curriculo %}{{ inscricao.nota_curriculo }}{% endif %}</td>
+          <td title="{{ inscricao.get_situacao_display }}">
+            <div class="text-center">
+              {% if inscricao.situacao == 0 %}
+                <div class="text-warning">{% bootstrap_icon "bell" %}</div>
+              {% elif inscricao.situacao == 1 %}
+                <div class="text-success">{% bootstrap_icon "thumbs-up" %}</div>
+              {% else %}
+                <div class="text-danger">{% bootstrap_icon "thumbs-down" %}</div>
+              {% endif %}
+            </div>
+          </td>
         </tr>
       {% endif %}
     {% endfor %}
@@ -40,13 +52,14 @@
   <hr />
 
   <table class="table table-bordered">
-    <tr class="alert-warning"><th colspan="5">Processos inativos</th></tr>
+    <tr class="alert-warning"><th colspan="6">Processos inativos</th></tr>
     <tr>
       <th>Cargo</th>
       <th>Setor</th>
       <th>Nota Escrita/Oral</th>
       <th>Nota Dinâmica</th>
       <th>Nota Currículo</th>
+      <td>Situação</td>
     </tr>
     {% for inscricao in profissional.inscricao_set.all %}
       {% if not inscricao.processo_seletivo.ativo %}
@@ -56,6 +69,15 @@
           <td>{% if inscricao.nota_escrita %}{{ inscricao.nota_escrita }}{% endif %}</td>
           <td>{% if inscricao.nota_dinamica %}{{ inscricao.nota_dinamica }}{% endif %}</td>
           <td>{% if inscricao.nota_curriculo %}{{ inscricao.nota_curriculo }}{% endif %}</td>
+          <td title="{{ inscricao.get_situacao_display }}">
+            {% if inscricao.situacao == 0 %}
+              {% bootstrap_icon "bell" %}
+            {% elif inscricao.situacao == 1 %}
+              {% bootstrap_icon "thumbs-up" %}
+            {% else %}
+              {% bootstrap_icon "thumbs-down" %}
+            {% endif %}
+          </td>
         </tr>
       {% endif %}
     {% endfor %}
