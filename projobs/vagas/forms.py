@@ -6,6 +6,10 @@ from .models import Vaga, Inscricao
 
 
 class VagaForm(forms.ModelForm):
+    inicio = forms.DateField(
+        widget=forms.TextInput(attrs={'id': 'datepicker'})
+    )
+
     class Meta:
         model = Vaga
         exclude = ('empresa', )

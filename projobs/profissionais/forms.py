@@ -7,6 +7,10 @@ from .models import Profissional
 
 
 class ProfissionalForm(AccountForm):
+    data_nascimento = forms.DateField(
+        widget=forms.TextInput(attrs={'id': 'datepicker'})
+    )
+
     class Meta:
         model = Profissional
         fields = (

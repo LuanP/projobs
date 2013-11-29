@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+
+
+{% block extrahead %}
+<script src="{{ STATIC_URL }}assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="{{ STATIC_URL }}assets/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js"></script>
+<script>
+  $(function () {
+    $('#datepicker').datetimepicker({
+        pickTime: false,
+        language: 'pt-BR',
+        format: 'dd/MM/yyyy'
+    });
+  });
+</script>
+{% endblock %}
