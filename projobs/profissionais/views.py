@@ -35,3 +35,8 @@ class CadastroView(CreateView):
     form_class = ProfissionalForm
     template_name = 'profissionais/cadastro.html'
     success_url = '/'
+
+    def form_valid(self, form):
+        response = super(CadastroView, self).form_valid(form)
+        self.object.send_activation_email()
+        return response
