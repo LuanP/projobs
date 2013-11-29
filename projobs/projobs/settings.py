@@ -108,6 +108,6 @@ EMAIL_HOST_USER = os.environ.get('HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('HOST_PWD')
 
 try:
-    from . import local_settings
+    from local_settings import *
 except ImportError:
     pass

@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.sites.models import Site
 from django.db import models
-from django.core.mail import send_mail
+from django.core.mail.message import EmailMessage
 from django.template.loader import render_to_string
 
 
@@ -22,13 +22,13 @@ class User(AbstractUser):
     )
 
     def email_user(self, subject, message, from_email=None):
-        from_ = settings.EMAIL_HOST_USER
-        send_mail(
+        email = EmailMessage(
             subject,
             message,
-            from_email if from_email else from_,
-            [self.email, ]
+            from_email,
+            [self.email, ],
         )
+        email.send()
 
     def send_activation_email(self):
         context = {
