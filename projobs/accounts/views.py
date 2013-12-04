@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import View
 
@@ -12,4 +13,5 @@ class AtivarView(View):
         )
         user.is_active = True
         user.save()
+        messages.success(request, 'Conta ativada com sucesso!')
         return redirect('home')
