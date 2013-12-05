@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse_lazy
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, UpdateView
@@ -20,6 +21,7 @@ class CadastroView(EmpresaBaseMixin, CreateView):
         self.object.empresa_id = self.get_object().pk
         self.object.save()
         form.save_m2m()
+        messages.success(self.request, 'Vaga cadastrada com sucesso!')
         return HttpResponseRedirect(self.get_success_url())
 
 
@@ -38,6 +40,7 @@ class AtualizarView(EmpresaBaseMixin, UpdateView):
         self.object.empresa_id = self.empresa_id
         self.object.save()
         form.save_m2m()
+        messages.success(self.request, 'Vaga atualizada com sucesso!')
         return HttpResponseRedirect(self.get_success_url())
 
     def get_object(self, queryset=None):
@@ -57,4 +60,5 @@ class InscricaoView(ProfissionalBaseMixin, CreateView):
         self.object.profissional_id = self.request.user.pk
         self.object.save()
         form.save_m2m()
+        messages.success(self.request, 'Inscrição realizada. Boa sorte!')
         return HttpResponseRedirect(self.get_success_url())

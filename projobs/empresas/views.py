@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView
 
@@ -37,4 +38,9 @@ class CadastroView(CreateView):
     def form_valid(self, form):
         response = super(CadastroView, self).form_valid(form)
         self.object.send_activation_email()
+        messages.success(
+            self.request,
+            "Foi enviada uma mensagem de ativação para seu e-mail. "
+            "Favor verificar"
+        )
         return response
